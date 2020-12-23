@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/buildCatoCard.dart';
+import 'questionSelector.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -20,27 +21,69 @@ class _HomeState extends State<Home> {
             buildCatoCard(
                 url: "images/catogories/gKnowloage.png",
                 text: "Gerenal Knowloage",
-                method: () {}),
-                buildCatoCard(
+                method: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return QuestionsSelector(
+                      appbarTitle: "Gerenal Knowloage",
+                    );
+                  }));
+                }),
+            buildCatoCard(
                 url: "images/catogories/books.png",
                 text: "Books",
-                method: () {}),
-                buildCatoCard(
+                method: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return QuestionsSelector(
+                      appbarTitle: "Books",
+                    );
+                  }));
+                }),
+            buildCatoCard(
                 url: "images/catogories/film.png",
                 text: "Film",
-                method: () {}),
-                buildCatoCard(
+                method: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return QuestionsSelector(
+                      appbarTitle: "Film",
+                    );
+                  }));
+                }),
+            buildCatoCard(
                 url: "images/catogories/music.png",
                 text: "Music",
-                method: () {}),
-                buildCatoCard(
+                method: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return QuestionsSelector(
+                      appbarTitle: "Music",
+                    );
+                  }));
+                }),
+            buildCatoCard(
                 url: "images/catogories/football.png",
                 text: "Football",
-                method: () {}),
-                buildCatoCard(
+                method: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return QuestionsSelector(
+                      appbarTitle: "Football",
+                    );
+                  }));
+                }),
+            buildCatoCard(
                 url: "images/catogories/bodybuilding.png",
                 text: "Bobybuilding",
-                method: () {})
+                method: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return QuestionsSelector(
+                      appbarTitle: "Bobybuilding",
+                    );
+                  }));
+                })
           ],
         ));
   }
