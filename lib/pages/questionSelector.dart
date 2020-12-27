@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/buildChoiceChip.dart';
+import 'home.dart';
 import 'questions.dart';
 
 class QuestionsSelector extends StatefulWidget {
@@ -12,12 +13,47 @@ class QuestionsSelector extends StatefulWidget {
 class _QuestionsSelectorState extends State<QuestionsSelector> {
   List<String> selectedNumber = new List();
   List<String> selectedDifficult = new List();
+  _showdialog(context) {
+    return showDialog(
+        context: (context),
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Alert"),
+            content: Text(
+              "Please select the question numbers and those difficulty !",
+              style: TextStyle(fontSize: 20),
+            ),
+            actions: [
+              RaisedButton(
+                  child: Text(
+                    'Exit',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  })
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(widget.appbarTitle),
-        centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return Home();
+                }));
+              }),
+        ],
+        // leading:
       ),
       body: Container(
         child: Column(
@@ -48,13 +84,21 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
               height: 40,
               child: FlatButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return Questions(
-                        selectedNumber: selectedNumber,
-                        selectedDifficult: selectedDifficult,
-                      );
-                    }));
+                    try {
+                      if (selectedNumber.last != null &&
+                          // ignore: unrelated_type_equality_checks
+                          selectedDifficult.last != Null) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return Questions(questionsCatogory: widget.appbarTitle,
+                            selectedNumber: selectedNumber,
+                            selectedDifficult: selectedDifficult,
+                          );
+                        }));
+                      }
+                    } catch (e) {
+                      _showdialog(context);
+                    }
                   },
                   color: Colors.grey[800],
                   child: Row(
