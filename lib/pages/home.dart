@@ -11,7 +11,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(automaticallyImplyLeading: false,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("Quiz App"),
           centerTitle: true,
         ),
@@ -20,12 +21,12 @@ class _HomeState extends State<Home> {
           children: [
             buildCatoCard(
                 url: "images/catogories/gKnowloage.png",
-                text: "Gerenal Knowloage",
+                text: "General Knowledge",
                 method: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
                     return QuestionsSelector(
-                      appbarTitle: "Gerenal Knowloage",
+                      appbarTitle: "General Knowledge",
                     );
                   }));
                 }),
