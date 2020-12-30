@@ -31,17 +31,41 @@ class _QuestionsState extends State<Questions> {
       var responsbody = convert.jsonDecode(response.body);
       return responsbody;
     } catch (e) {
-      print(e);
+      _showdialog(context,e);
     }
   }
-
+   _showdialog(context,e) {
+    return showDialog(
+        context: (context),
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Alert"),
+            content: Text(
+              "The server is dropped !",
+              style: TextStyle(fontSize: 20),
+            ),
+            actions: [
+              RaisedButton(
+                  child: Text(
+                    'Exit',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                      return Home();
+                    }));
+                  })
+            ],
+          );
+        });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
             future: getQuiz(),
             builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.data.length != 0) {
+              if (snapshot.hasData && snapshot.data.length != 0 && snapshot.data.length>=int.parse(widget.selectedNumber.last)) {
                 return Stack(
                   children: [
                     Container(
@@ -105,7 +129,12 @@ class _QuestionsState extends State<Questions> {
                   ],
                 );
               }
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                child: Text(
+                  'Comming Sooooooooooon !',
+                  style: TextStyle(fontSize: 20),
+                ),
+              );
             }));
   }
 
@@ -134,7 +163,11 @@ class _QuestionsState extends State<Questions> {
                           index--;
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
-                            return Results(selectedAnswer:selectedAnswer,);
+                            return Results(
+                              selectedAnswer: selectedAnswer,
+                              totalNumber:
+                                  int.parse(widget.selectedNumber.last),
+                            );
                           }));
                         }
                       }

@@ -25,20 +25,24 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
       var responsbody = convert.jsonDecode(response.body);
       return responsbody;
     } catch (e) {
-      print(e);
+      _showdialog(context, "The server is dropped !", () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return Home();
+        }));
+      });
     }
   }
 
   List<String> selectedNumber = new List();
   List<String> selectedDifficult = new List();
-  _showdialog(context) {
+  _showdialog(context, String text, Function method) {
     return showDialog(
         context: (context),
         builder: (context) {
           return AlertDialog(
             title: Text("Alert"),
             content: Text(
-              "Please select the question numbers and those difficulty !",
+              text,
               style: TextStyle(fontSize: 20),
             ),
             actions: [
@@ -47,9 +51,7 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
                     'Exit',
                     style: TextStyle(fontSize: 15),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  })
+                  onPressed: method)
             ],
           );
         });
@@ -120,7 +122,11 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
                                   }));
                                 }
                               } catch (e) {
-                                _showdialog(context);
+                                _showdialog(context,
+                                    "Please select the question numbers and those difficulty !",
+                                    () {
+                                  Navigator.of(context).pop();
+                                });
                               }
                             },
                             color: Colors.grey[800],
@@ -142,11 +148,11 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
                 );
               }
               return Center(
-                      child: Text(
-                        'Comming Sooooooooooon !',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    );
+                child: Text(
+                  'Comming Sooooooooooon !',
+                  style: TextStyle(fontSize: 20),
+                ),
+              );
             }));
   }
 }
