@@ -146,12 +146,16 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
                     ],
                   ),
                 );
+              }else if (snapshot.hasData && snapshot.data.length == 0) {
+                return Center(
+                  child: Text(
+                    'Comming Sooooooooooon !',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                );
               }
               return Center(
-                child: Text(
-                  'Comming Sooooooooooon !',
-                  style: TextStyle(fontSize: 20),
-                ),
+                child: CircularProgressIndicator(),
               );
             }));
   }

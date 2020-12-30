@@ -31,10 +31,11 @@ class _QuestionsState extends State<Questions> {
       var responsbody = convert.jsonDecode(response.body);
       return responsbody;
     } catch (e) {
-      _showdialog(context,e);
+      _showdialog(context, e);
     }
   }
-   _showdialog(context,e) {
+
+  _showdialog(context, e) {
     return showDialog(
         context: (context),
         builder: (context) {
@@ -51,7 +52,8 @@ class _QuestionsState extends State<Questions> {
                     style: TextStyle(fontSize: 15),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
                       return Home();
                     }));
                   })
@@ -59,13 +61,17 @@ class _QuestionsState extends State<Questions> {
           );
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
             future: getQuiz(),
             builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.data.length != 0 && snapshot.data.length>=int.parse(widget.selectedNumber.last)) {
+              if (snapshot.hasData &&
+                  snapshot.data.length != 0 &&
+                  snapshot.data.length >=
+                      int.parse(widget.selectedNumber.last)) {
                 return Stack(
                   children: [
                     Container(
@@ -128,12 +134,19 @@ class _QuestionsState extends State<Questions> {
                           snap: snapshot),
                   ],
                 );
+              } else if (snapshot.hasData &&
+                  (snapshot.data.length == 0 ||
+                      snapshot.data.length <
+                          int.parse(widget.selectedNumber.last))) {
+                return Center(
+                  child: Text(
+                    'Comming Sooooooooooon !',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                );
               }
               return Center(
-                child: Text(
-                  'Comming Sooooooooooon !',
-                  style: TextStyle(fontSize: 20),
-                ),
+                child: CircularProgressIndicator(),
               );
             }));
   }
