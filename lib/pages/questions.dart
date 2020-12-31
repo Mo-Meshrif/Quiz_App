@@ -31,11 +31,11 @@ class _QuestionsState extends State<Questions> {
       var responsbody = convert.jsonDecode(response.body);
       return responsbody;
     } catch (e) {
-      _showdialog(context, e);
+      _showdialog(context);
     }
   }
 
-  _showdialog(context, e) {
+  _showdialog(context) {
     return showDialog(
         context: (context),
         builder: (context) {

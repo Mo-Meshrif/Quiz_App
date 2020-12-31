@@ -140,7 +140,7 @@ class _ResultsState extends State<Results> {
                                     method: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(builder: (context) {
-                                        return CheckAnswers();
+                                        return CheckAnswers(totalNumber: widget.totalNumber,selectedAnswer: widget.selectedAnswer,);
                                       }));
                                     })),
                           ],
