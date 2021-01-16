@@ -33,8 +33,8 @@ class _QuestionsSelectorState extends State<QuestionsSelector> {
     }
   }
 
-  List<String> selectedNumber = new List();
-  List<String> selectedDifficult = new List();
+  List<String> selectedNumber = [];
+  List<String> selectedDifficult = [];
   _showdialog(context, String text, Function method) {
     return showDialog(
         context: (context),

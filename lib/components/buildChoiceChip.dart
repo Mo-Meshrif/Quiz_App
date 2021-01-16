@@ -15,7 +15,7 @@ class _MyChoiceChipState extends State<MyChoiceChip> {
   
 
   Widget _buildChips() {
-    List<Widget> chips = new List();
+    List<Widget> chips = [];
     for (int i = 0; i < widget.options.length; i++) {
       ChoiceChip choiceChip = ChoiceChip(
         selected: _selectedIndex == i,
