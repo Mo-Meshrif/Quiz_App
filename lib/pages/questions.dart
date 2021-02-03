@@ -175,7 +175,7 @@ class _QuestionsState extends State<Questions> {
                         if (index == snap.data.length) {
                           index--;
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
+                              .pushReplacement(MaterialPageRoute(builder: (context) {
                             return Results(
                               selectedAnswer: selectedAnswer,
                               totalNumber:
